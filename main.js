@@ -1,3 +1,6 @@
+// Импортируем мультиязычное описание погодных условий
+import conditions from "./conditions.js";
+
 // Получаем хэдер сайта
 const header = document.querySelector(".header");
 
@@ -60,9 +63,6 @@ async function getWeather(city) {
     // Преобразуем ответ в формат JSON
     const data = await response.json();
 
-    // Выводим в консоль полученные данные
-    console.log(data);
-
     // Возвращаем полученные данные
     return data;
 }
@@ -96,12 +96,15 @@ form.onsubmit = async function(e) {
         // Удаляем предыдущую карточку
         removeCard();
 
+        // Получаем объект с данными о погоде, соответствующий заданному коду
+        const info = conditions.find((obj) => obj.code === data.current.condition.code);
+
         // Создаём объект для хранения данных о погоде
         const weatherData = {
             name: data.location.name,
             country: data.location.country,
             temp: data.current.temp_c,
-            condition: data.current.condition.text
+            condition: info.languages[23]['day_text'],
         }
 
         // Отображаем карточку с погодой, передавая ей данные о погоде
