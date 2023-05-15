@@ -99,12 +99,15 @@ form.onsubmit = async function(e) {
         // Получаем объект с данными о погоде, соответствующий заданному коду
         const info = conditions.find((obj) => obj.code === data.current.condition.code);
 
+        // Получаем описание погоды в зависимости от дня или ночи
+        const condition = data.current.is_day ? info.languages[23]['day_text'] : info.languages[23]['night_text'];
+
         // Создаём объект для хранения данных о погоде
         const weatherData = {
             name: data.location.name,
             country: data.location.country,
             temp: data.current.temp_c,
-            condition: info.languages[23]['day_text'],
+            condition: condition,
         }
 
         // Отображаем карточку с погодой, передавая ей данные о погоде

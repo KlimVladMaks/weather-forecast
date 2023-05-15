@@ -179,8 +179,8 @@ body {
     /* Внутренние отступы */
     padding: 30px;
 
-    /* Ширина */
-    width: 360px;
+    /* Минимальная ширина */
+    min-width: 360px;
 
     /* Цвет фона */
     background-color: #ffffff;
