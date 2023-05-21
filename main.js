@@ -30,7 +30,7 @@ function showError(errorMessage) {
 
 // Функция для отображения карточки с погодой
 // (Функция получает на вход объект с данными и погоде и извлекает из него необходимые данные)
-function showCard({name, country, temp, condition}) {
+function showCard({name, country, temp, condition, img}) {
 
     // HTML-код карточки с погодой, заполненной в соответствии с полученными данными
     const html = `
@@ -38,7 +38,7 @@ function showCard({name, country, temp, condition}) {
         <h2 class="card-city">${name} <span>${country}</span></h2>
         <div class="card-weather">
             <div class="card-value">${temp}<sup>°C</sup></div>
-            <img class="card-img" src="./img/example.png" alt="Weather">
+            <img class="card-img" src="${img}" alt="Weather">
         </div>
         <div class="card-description">${condition}</div>
     </div>
@@ -108,6 +108,7 @@ form.onsubmit = async function(e) {
             country: data.location.country,
             temp: data.current.temp_c,
             condition: condition,
+            img: data.current.condition.icon,
         }
 
         // Отображаем карточку с погодой, передавая ей данные о погоде
